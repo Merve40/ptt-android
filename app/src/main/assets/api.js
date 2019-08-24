@@ -3,7 +3,7 @@ var Writable = require('web-audio-stream/writable');
 const config = {
     url_login : 'https://ptt-demo.herokuapp.com/login',
     url_subscribe: 'https://ptt-demo.herokuapp.com/subscribe?channel=',
-    url_socket: 'wss://ptt-demo.herokuapp.com/wss'
+    url_socket: 'wss://ptt-demo.herokuapp.com/wss?id='
 };
 
 const ptt = (function() {
@@ -12,6 +12,7 @@ const ptt = (function() {
     var context;
     var ws;
     var button;
+    var id;
 
     const recorder = {
         start: ()=>{
@@ -39,7 +40,7 @@ const ptt = (function() {
         connect : function(){
 
             const subscribe = (channel)=>{
-                return fetch(config.url_subscribe+channel, {method: 'GET'});
+                return fetch(config.url_subscribe+channel+"&id="+id, {method: 'GET'});
             };
 
             const bind = (btn)=>{
@@ -55,11 +56,13 @@ const ptt = (function() {
             };
 
             return new Promise((resolve, reject) =>{
-                fetch(config.url_login, { method: 'POST' })
-                .then((r)=>{
+                fetch(config.url_login, { method: 'GET' })
+                .then(r=>r.json())
+                .then(data =>{
+                    id = data.id;
 
                     var reconnect = ()=>{
-                        var socket = new WebSocket(config.url_socket);
+                        var socket = new WebSocket(config.url_socket+id);
                         socket.binaryType = ws.binaryType;
                         socket.onopen = ws.onopen;
                         socket.onerror = ws.onerror;
@@ -68,7 +71,7 @@ const ptt = (function() {
                         ws = socket;
                     }
 
-                    ws = new WebSocket(config.url_socket);
+                    ws = new WebSocket(config.url_socket+id);
                     ws.binaryType = 'arraybuffer';
 
                     ws.onopen = function(){
@@ -80,7 +83,7 @@ const ptt = (function() {
                     };
 
                     ws.onclose = function(e){
-                        if(e.code == 1011){
+                        if(e.code == 1011 || e.code == 1006){
                             var msg = `Could not connect to websocket. reason=${e.reason}`;
                             console.log(msg);
                             reject({error: msg});
@@ -130,13 +133,15 @@ const ptt = (function() {
                         }
                     }
 
+                    /*
                     setInterval(()=>{
                         if(ws.readyState == 3 || ws.readyState == 2){
                             reconnect();
                         }
                     }, 5000);
+                    */
                 })
-                .catch(function(err) {
+                .catch(err => {
                     reject(err);
                 });
             });
