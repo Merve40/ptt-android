@@ -18,7 +18,6 @@ public class StreamUtil {
      * @param data byte array containing PCM
      * @param channels (MONO=1, STEREO=2)
      * @param sampleRate (8000, 16000, 22050, .. 96000)
-     * @param bitDepth (8, 16, 32)
      *
      * @return byte array containing WAV headers and PCM data.
      */
@@ -40,22 +39,22 @@ public class StreamUtil {
         try {
 
             out.write(new byte[]{
-                    // RIFF header
-                    'R', 'I', 'F', 'F', // ChunkID
-                    0, 0, 0, 0, // ChunkSize (must be updated later)
-                    'W', 'A', 'V', 'E', // Format
-                    // fmt subchunk
-                    'f', 'm', 't', ' ', // Subchunk1ID
-                    16, 0, 0, 0, // Subchunk1Size
-                    1, 0, // AudioFormat
-                    littleBytes[0], littleBytes[1], // NumChannels
-                    littleBytes[2], littleBytes[3], littleBytes[4], littleBytes[5], // SampleRate
-                    littleBytes[6], littleBytes[7], littleBytes[8], littleBytes[9], // ByteRate
-                    littleBytes[10], littleBytes[11], // BlockAlign
-                    littleBytes[12], littleBytes[13], // BitsPerSample
-                    // data subchunk
-                    'd', 'a', 't', 'a', // Subchunk2ID
-                    0, 0, 0, 0, // Subchunk2Size (must be updated later)
+                // RIFF header
+                'R', 'I', 'F', 'F', // ChunkID
+                0, 0, 0, 0, // ChunkSize (must be updated later)
+                'W', 'A', 'V', 'E', // Format
+                // fmt subchunk
+                'f', 'm', 't', ' ', // Subchunk1ID
+                16, 0, 0, 0, // Subchunk1Size
+                1, 0, // AudioFormat
+                littleBytes[0], littleBytes[1], // NumChannels
+                littleBytes[2], littleBytes[3], littleBytes[4], littleBytes[5], // SampleRate
+                littleBytes[6], littleBytes[7], littleBytes[8], littleBytes[9], // ByteRate
+                littleBytes[10], littleBytes[11], // BlockAlign
+                littleBytes[12], littleBytes[13], // BitsPerSample
+                // data subchunk
+                'd', 'a', 't', 'a', // Subchunk2ID
+                0, 0, 0, 0, // Subchunk2Size (must be updated later)
             });
 
             out.write(data);
@@ -86,4 +85,14 @@ public class StreamUtil {
 
         return wavPcm;
     }
+
+    public static byte[] toWAV(short[] data, short channels, int sampleRate, short bitDepth){
+
+        byte[] buffer = new byte[data.length*2];
+        ByteBuffer.wrap(buffer).order(ByteOrder.LITTLE_ENDIAN).asShortBuffer().put(data);
+
+        return toWAV(buffer, channels, sampleRate, bitDepth);
+    }
+
+
 }

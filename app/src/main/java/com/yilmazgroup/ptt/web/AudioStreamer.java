@@ -20,7 +20,7 @@ public class AudioStreamer {
 
     private static final int SAMPLE_RATE = 44100;
     private static final int CHANNELS = 2;
-    private static final int ENCODING = 8;
+    private static final int ENCODING = 16;
 
     private final WebView web;
     private AudioRecord recorder;
@@ -46,7 +46,7 @@ public class AudioStreamer {
         new Thread(()->{
 
             while(!hasStopped){
-                byte[] data = new byte[4096];
+                short[] data = new short[6144];
                 recorder.read(data, 0, data.length, AudioRecord.READ_BLOCKING);
                 byte[] output = StreamUtil.toWAV(data, (short) CHANNELS, SAMPLE_RATE, (short) ENCODING);
                 send(callbackFunc, output);
@@ -118,6 +118,6 @@ public class AudioStreamer {
         }
 
         int min = AudioRecord.getMinBufferSize(SAMPLE_RATE, channel, encoding);
-        recorder = new AudioRecord(MediaRecorder.AudioSource.VOICE_RECOGNITION, SAMPLE_RATE, channel, encoding, min);
+        recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, SAMPLE_RATE, channel, encoding, min);
     }
 }
