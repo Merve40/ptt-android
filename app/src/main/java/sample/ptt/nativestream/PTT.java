@@ -72,6 +72,7 @@ public class PTT {
 
                 } catch (JSONException | IOException e1) {
                     e1.printStackTrace();
+                    listener.onFailure(e1);
                 }
             }
         };

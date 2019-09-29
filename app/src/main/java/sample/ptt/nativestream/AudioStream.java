@@ -11,6 +11,11 @@ import java.nio.ByteOrder;
 import okhttp3.WebSocket;
 import okio.ByteString;
 
+/**
+ * Streams audio over a websocket connection.
+ *
+ * @author Merve Sahin
+ */
 public class AudioStream {
 
     private static final int SAMPLE_RATE = 44100;
