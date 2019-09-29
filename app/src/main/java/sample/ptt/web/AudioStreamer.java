@@ -1,6 +1,5 @@
-package com.yilmazgroup.ptt.web;
+package sample.ptt.web;
 
-import android.content.Context;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;

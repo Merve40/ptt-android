@@ -1,4 +1,4 @@
-package com.yilmazgroup.ptt;
+package sample.ptt;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

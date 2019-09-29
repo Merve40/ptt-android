@@ -1,4 +1,4 @@
-package com.yilmazgroup.ptt.web;
+package sample.ptt.web;
 
 import android.Manifest;
 import android.app.Activity;

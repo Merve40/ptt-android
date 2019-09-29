@@ -1,4 +1,4 @@
-package com.yilmazgroup.ptt.web;
+package sample.ptt.web;
 
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;

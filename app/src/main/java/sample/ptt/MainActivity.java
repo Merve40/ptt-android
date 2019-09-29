@@ -1,4 +1,4 @@
-package com.yilmazgroup.ptt;
+package sample.ptt;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-import com.yilmazgroup.ptt.web.ChromeClient;
-import com.yilmazgroup.ptt.web.PttBrowser;
-import com.yilmazgroup.ptt.web.AudioStreamer;
+import sample.ptt.web.ChromeClient;
+import sample.ptt.web.PttBrowser;
+import sample.ptt.web.AudioStreamer;
 
 public class MainActivity extends AppCompatActivity {
 

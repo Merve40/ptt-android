@@ -1,4 +1,4 @@
-package com.yilmazgroup.ptt.web;
+package sample.ptt.web;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
