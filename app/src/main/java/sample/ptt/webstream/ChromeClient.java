@@ -1,4 +1,4 @@
-package sample.ptt.web;
+package sample.ptt.webstream;
 
 import android.Manifest;
 import android.app.Activity;

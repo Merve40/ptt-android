@@ -1,4 +1,4 @@
-package sample.ptt.web;
+package sample.ptt.webstream;
 
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;

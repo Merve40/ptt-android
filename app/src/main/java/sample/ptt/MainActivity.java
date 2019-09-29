@@ -9,9 +9,9 @@ import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-import sample.ptt.web.ChromeClient;
-import sample.ptt.web.PttBrowser;
-import sample.ptt.web.AudioStreamer;
+import sample.ptt.webstream.ChromeClient;
+import sample.ptt.webstream.PttBrowser;
+import sample.ptt.webstream.AudioStreamer;
 
 public class MainActivity extends AppCompatActivity {
 

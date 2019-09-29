@@ -1,4 +1,4 @@
-package sample.ptt.web;
+package sample.ptt.webstream;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package sample.ptt.web;
+package sample.ptt.webstream;
 
 import android.media.AudioFormat;
 import android.media.AudioRecord;

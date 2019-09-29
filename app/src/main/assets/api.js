@@ -102,34 +102,16 @@ const ptt = (function() {
                                 button.disabled = true;
                             }
 
-                            if (context){
-                                if(context.state == 'running'){
-                                    context.close();
-                                }
-                            }
-
-                            context = new (window.AudioContext || window.webkitAudioContext)();
-
-                            writable = Writable(context.destination, {
-                                context: context,
-                                //channels: 2,
-                                //sampleRate: context.sampleRate,
-                                autoend: true
-                            });
-
                         }else if(e.data == 'stopped'){
-                            context.close();
 
                             if(button){
                                 button.disabled = false;
                             }
 
                         }else{
-                            if (context.state == 'running'){
-                                context.decodeAudioData(e.data, (buffer)=>{
-                                    writable.write(buffer);
-                                });
-                            }
+                            var url = URL.createObjectURL(new Blob([e.data]));
+                            var audio = new Audio(url);
+                            audio.play();
                         }
                     }
 
