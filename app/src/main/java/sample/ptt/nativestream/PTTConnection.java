@@ -14,7 +14,9 @@ import okhttp3.WebSocket;
  */
 public class PTTConnection {
 
+
     private static final String URL_SUBSCRIBE = "https://ptt-demo.herokuapp.com/subscribe?channel=";
+    //private static final String URL_SUBSCRIBE = "https://wise-grasshopper-74.localtunnel.me/subscribe?channel=";
 
     private String id;
     private AudioStream audioStream;

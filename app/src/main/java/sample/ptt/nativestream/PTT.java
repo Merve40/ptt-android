@@ -30,7 +30,6 @@ public class PTT {
     private static final String URL_LOGIN = "https://ptt-demo.herokuapp.com/login";
     private static final String URL_WEBSOCKET = "wss://ptt-demo.herokuapp.com/wss?id=";
 
-
     /**
      * Connects to the server and creates a {@link PTTConnection} object.
      *
