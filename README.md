@@ -15,8 +15,8 @@ WebView uses [AudioContext](https://developer.mozilla.org/en-US/docs/Web/API/Aud
 
 ### Native streaming (nativestream)    
 * better sound quality
-* works only from android to android for now
-* support starting from API level 23
+* can stream audio to other android devices and browsers
+* support starting from API level 23 
 
 ## Demo 
 A demo can be performed between browser and android app at [https://ptt-demo.herokuapp.com](https://ptt-demo.herokuapp.com)
